@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let url;
   let select = document.querySelector('select');
   let body = document.querySelector('body');
-  let div = document.querySelector('.data');
-
 
   function getUrl(route) {
     url = `https://jsonplaceholder.typicode.com/${route}`;
@@ -21,13 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   }
 
-
   function infoRendering(arrObj) {
-    /*using replaceChild and having lines 28-30 outside of this func call didn't
-    wasn't replacing items so added another event listener.*/
+    // while(newDiv.firstChild) {
+    //   newDiv.removeChild(newDiv.firstChild)
+    // }
     let newDiv = document.createElement('div');
     newDiv.classList.add('data');
     body.appendChild(newDiv);
+
+    let div = document.querySelector('.data');
 
     arrObj.forEach(el => {
       let h3 = document.createElement('h3');
@@ -42,17 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
 
-    select.addEventListener('change', () => {
-      newDiv.remove();
-
-    })
-    // body.replaceChild(newDiv, div);
-
+    body.replaceChild(newDiv, div);
   }
 
   select.addEventListener('change', (event) => {
-    getUrl(event.target.value)
-
+    getUrl(event.target.value);
   })
 
 });
